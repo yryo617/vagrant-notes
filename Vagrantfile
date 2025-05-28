@@ -20,7 +20,8 @@ Vagrant.configure("2") do |config|
     libvirt.cpus=8
     libvirt.driver="kvm" # set to use KVM hypervisor (hardware accelerated)
     dirname = __dir__.split('/')[-1] # gets the containing directory name
-    libvirt.default_prefix = "#{Etc.getpwuid.uid}-#{dirname}-" # set to use your UID as prefix of libvirt VM to avoid collision 
+    rand = '%010d' % rand(10 ** 10) # Random 
+    libvirt.default_prefix = "#{Etc.getpwuid.uid}-#{rand}-#{dirname}-" # set to use your UID as prefix of libvirt VM to avoid collision 
   end
 
   config.vm.provision "shell", privileged: true, inline: $PROVISION

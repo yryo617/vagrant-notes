@@ -78,7 +78,7 @@ Vagrantfile is just a ruby script; you can set up your own variable, e.g. `commo
 ## Vagrant+libvirt environment VM name-collision
 In a shared-machine context, vagrant+libvirt setup can have an issue where the vms overwrite each other. The libvirt VM machine name defaults to just the directory name containing the Vagrantfile and suffix ``-default``. 
 vagrant-libvirt plugin has a way to set the prefix (https://github.com/vagrant-libvirt/vagrant-libvirt/issues/289) via ``libvirt.default_prefix`` variable. 
-The Vagrantfile examples in this repository is configured to use the unix UID and the containing directory as the prefix. 
+The Vagrantfile examples in this repository is configured to use the unix UID, random 10 digit number, and the containing directory as the prefix. 
 
 ## Shared Directories and moving data between the VM and the Host
     
