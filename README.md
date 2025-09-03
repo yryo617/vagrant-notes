@@ -32,12 +32,12 @@ The following explains my motivation for using qemu over Virtualbox.
     
 For my specific usecase, using mininet within a VM to create a network topology, I found that using Virtualbox (6.1.x) creates latency variation within the mininet nodes.
 On the other hand, qemu with libvirt has shown consistent, expected, network latency with little to no deviation within the mininet nodes.
-As my work relies on accurate network RTT samples, I chose to use quemu over Virtualbox.
+As my work relies on accurate network RTT samples, I chose to use qemu over Virtualbox.
 
 I also found that sets up the VM-Host networking differently.
 Virtualbox sets up ssh access to the host machine by port forwarding port 22 on the VM to a port on the host.
 Qemu sets up a virtual network, assigns a private IP to the VM and uses that address and port 22 for secure shell access.
-This is a small quality of life feature which makes it easier to connect multiple VMs on one host without having to deal with port colision or manually dealing with port forwarding to instruct which host port should be used for which VM.
+This is a small quality of life feature which makes it easier to connect multiple VMs on one host without having to deal with port collision or manually dealing with port forwarding to instruct which host port should be used for which VM.
 
 ### Setting up Qemu and Libvirt with Vagrant
 
@@ -65,7 +65,7 @@ An example of a provisioning script is [provided](https://github.com/glasgow-ipl
 
 If you have more than one vagrant provider you may need to specify the provider when issuing using up, e.g., ``vagrant up --provider=libvirt``.
 Ryo found that you can add the following [line](https://github.com/glasgow-ipl/vagrant-notes/blob/master/Vagrantfile#L21) to the vagrantfile to force use of a specific driver and provider (e.g., qemu and libvert).
-``libvirt.driver`` option should be set to ``kvm``.
+``libvirt.driver`` option should be set to ``kvm``, which should enable hardware acceleration instead of using full-software emulation of the VM.
 
 ## Sharing config in multi-provider environment
 
